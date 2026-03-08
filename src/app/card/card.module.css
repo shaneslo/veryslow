@@ -1,0 +1,80 @@
+/* =========================================== */
+/* Birthday E-Card Animations                 */
+/* All keyframes for the envelope experience  */
+/* =========================================== */
+
+/* Envelope flap rotates open around its top edge */
+@keyframes flapOpen {
+  0%   { transform: rotateX(0deg); z-index: 2; }
+  100% { transform: rotateX(-180deg); z-index: 0; }
+}
+
+/* Card rises up out of the envelope */
+@keyframes cardRise {
+  0%   { transform: translateY(0) translateX(-50%); opacity: 0; }
+  20%  { opacity: 1; }
+  100% { transform: translateY(-110%) translateX(-50%); opacity: 1; }
+}
+
+/* Envelope body fades and shrinks away */
+@keyframes envelopeFade {
+  0%   { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0.88); pointer-events: none; }
+}
+
+/* Card content fades in after rising */
+@keyframes cardReveal {
+  0%   { opacity: 0; transform: translateY(16px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Gentle pulse hint on idle envelope */
+@keyframes envelopePulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 4px 24px rgba(212, 168, 83, 0.15); }
+  50%       { transform: scale(1.012); box-shadow: 0 8px 32px rgba(212, 168, 83, 0.3); }
+}
+
+/* Sparkle pop for decorative elements */
+@keyframes sparklePop {
+  0%   { transform: scale(0) rotate(0deg); opacity: 0; }
+  60%  { transform: scale(1.2) rotate(15deg); opacity: 1; }
+  100% { transform: scale(1) rotate(10deg); opacity: 1; }
+}
+
+/* ---- Applied classes ---- */
+
+.envelopeIdle {
+  animation: envelopePulse 2.4s ease-in-out infinite;
+}
+
+.flapOpening {
+  animation: flapOpen 500ms ease-in forwards;
+  transform-origin: top center;
+}
+
+.cardRising {
+  animation: cardRise 700ms ease-out 300ms forwards;
+}
+
+.envelopeFading {
+  animation: envelopeFade 400ms ease-out 800ms forwards;
+}
+
+.cardVisible {
+  animation: cardReveal 600ms ease-out forwards;
+}
+
+.sparklePop {
+  animation: sparklePop 400ms ease-out forwards;
+}
+
+/* Wrapper for 3D perspective on the flap */
+.envelopeWrapper {
+  perspective: 700px;
+  perspective-origin: center top;
+}
+
+/* Prevent hover pulse once opening begins */
+.envelopeOpening .envelopeIdle {
+  animation: none;
+}

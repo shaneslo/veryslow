@@ -1,0 +1,432 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Source+Serif+4:ital,wght@0,200..900;1,200..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Root color variables */
+:root {
+  --background: #ffffff;
+  --foreground: #000000;
+  --muted: #f5f5f5;
+  --muted-foreground: #525252;
+  --border: #000000;
+  --border-light: #e5e5e5;
+  --card: #ffffff;
+  --card-foreground: #000000;
+  --ring: #000000;
+}
+
+/* Base styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 1.125rem;
+  line-height: 1.625;
+  letter-spacing: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Serif typography base */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+}
+
+h1 {
+  @apply text-9xl;
+}
+
+h2 {
+  @apply text-6xl;
+}
+
+h3 {
+  @apply text-5xl;
+}
+
+h4 {
+  @apply text-4xl;
+}
+
+h5 {
+  @apply text-3xl;
+}
+
+h6 {
+  @apply text-2xl;
+}
+
+/* Monospace for metadata */
+code, kbd, pre, samp {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Link styles */
+a {
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 100ms;
+}
+
+a:hover {
+  border-bottom-color: var(--foreground);
+}
+
+a:focus-visible {
+  outline: 3px solid var(--foreground);
+  outline-offset: 3px;
+  border-bottom: 1px solid var(--foreground);
+}
+
+/* List styles */
+ul, ol {
+  @apply pl-6;
+}
+
+ul {
+  list-style-type: disc;
+}
+
+ol {
+  list-style-type: decimal;
+}
+
+li {
+  @apply mb-2;
+}
+
+/* Blockquote styling */
+blockquote {
+  @apply pl-8 border-l-4 border-black italic text-muted-foreground;
+  border-left-width: 4px;
+  border-left-color: var(--foreground);
+}
+
+/* Code block styling */
+pre {
+  @apply bg-muted p-4 border border-border-light overflow-x-auto;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border-radius: 0;
+}
+
+code:not(pre code) {
+  @apply bg-muted px-2 py-1 text-sm;
+  border-radius: 0;
+}
+
+/* Focus visible for buttons and inputs */
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--ring);
+  outline-offset: 3px;
+  border-radius: 0;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
+
+/* Placeholder text */
+::placeholder {
+  color: var(--muted-foreground);
+  font-style: italic;
+}
+
+/* Remove default outline from inputs */
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='number'],
+textarea,
+select {
+  border-radius: 0;
+  font-family: inherit;
+}
+
+/* Skip link (visible on focus) */
+.skip-to-content {
+  @apply fixed top-0 left-0 z-50 px-4 py-2 bg-black text-white border-none cursor-pointer font-mono text-sm tracking-widest;
+  transform: translateY(-120%);
+  transition: transform 100ms;
+  border-radius: 0;
+}
+
+.skip-to-content:focus {
+  transform: translateY(0);
+  outline: 3px solid var(--ring);
+  outline-offset: 3px;
+}
+
+/* ==================== */
+/* TEXTURE PATTERNS    */
+/* ==================== */
+
+/* Global horizontal lines pattern */
+.pattern-horizontal-lines {
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 1px,
+    #000 1px,
+    #000 2px
+  );
+  background-size: 100% 4px;
+  opacity: 0.015;
+}
+
+/* Grid pattern (editorial sections) */
+.pattern-grid {
+  background-image:
+    linear-gradient(#00000008 1px, transparent 1px),
+    linear-gradient(90deg, #00000008 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.015;
+}
+
+/* Diagonal lines (process/timeline) */
+.pattern-diagonal-lines {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 40px,
+    #00000008 40px,
+    #00000008 42px
+  );
+  opacity: 0.01;
+}
+
+/* Noise texture (subtle paper-like quality) */
+.pattern-noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.02;
+}
+
+/* Inverted vertical lines (for dark backgrounds) */
+.pattern-vertical-lines-inverted {
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 1px,
+    #fff 1px,
+    #fff 2px
+  );
+  background-size: 4px 100%;
+  opacity: 0.03;
+}
+
+/* Inverted radial gradient (Final CTA, accent areas) */
+.pattern-radial-inverted {
+  background-image: radial-gradient(
+    circle at top center,
+    #ffffff,
+    transparent 70%
+  );
+  opacity: 0.05;
+}
+
+/* ==================== */
+/* UTILITY CLASSES     */
+/* ==================== */
+
+/* Text sizing utilities for oversized typography */
+.text-display-sm {
+  @apply font-display text-7xl tracking-tighter leading-tight;
+}
+
+.text-display-md {
+  @apply font-display text-8xl tracking-tighter leading-tight;
+}
+
+.text-display-lg {
+  @apply font-display text-9xl tracking-tighter leading-tight;
+}
+
+.text-display-xl {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(8rem, 20vw, 10rem);
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+/* Body text utility */
+.text-body {
+  @apply font-serif text-lg leading-relaxed tracking-normal;
+}
+
+/* Label/metadata utility */
+.text-label {
+  @apply font-mono text-sm tracking-widest uppercase text-muted-foreground;
+}
+
+/* Border utilities */
+.border-hairline {
+  @apply border border-border-light;
+}
+
+.border-thin {
+  @apply border border-black;
+}
+
+.border-medium {
+  border-width: 2px;
+  @apply border-black;
+}
+
+.border-thick {
+  border-width: 4px;
+  @apply border-black;
+}
+
+.border-ultra {
+  border-width: 8px;
+  @apply border-black;
+}
+
+.border-t-thick {
+  border-top-width: 4px;
+  @apply border-t-black;
+}
+
+.border-b-thick {
+  border-bottom-width: 4px;
+  @apply border-b-black;
+}
+
+.border-l-thick {
+  border-left-width: 4px;
+  @apply border-l-black;
+}
+
+.border-r-thick {
+  border-right-width: 4px;
+  @apply border-r-black;
+}
+
+/* Card utilities */
+.card {
+  @apply bg-white p-8 border border-black transition-colors duration-100;
+}
+
+.card:hover {
+  @apply bg-black text-white border-black;
+}
+
+.card-inverted {
+  @apply bg-black text-white p-8;
+}
+
+/* Button utilities */
+.btn-primary {
+  @apply bg-black text-white px-8 py-4 font-mono uppercase tracking-widest text-sm border-none transition-colors duration-100 focus-visible:outline-black focus-visible:outline-offset-3 cursor-pointer;
+}
+
+.btn-primary:hover {
+  @apply bg-white text-black border-2 border-black;
+}
+
+.btn-secondary {
+  @apply bg-transparent text-black px-8 py-4 font-mono uppercase tracking-widest text-sm border-2 border-black transition-colors duration-100 focus-visible:outline-black focus-visible:outline-offset-3 cursor-pointer;
+}
+
+.btn-secondary:hover {
+  @apply bg-black text-white;
+}
+
+.btn-ghost {
+  @apply bg-transparent text-black px-8 py-4 font-mono uppercase tracking-widest text-sm border-none transition-all duration-100 focus-visible:outline-black focus-visible:outline-offset-3 cursor-pointer hover:border-b-2 hover:border-black;
+}
+
+/* Container utilities */
+.container-max {
+  @apply mx-auto max-w-6xl px-6 md:px-8 lg:px-12;
+}
+
+.section-spacing {
+  @apply py-24 md:py-32 lg:py-40;
+}
+
+.section-divider {
+  @apply w-full h-1 bg-black;
+}
+
+.section-divider-thick {
+  @apply w-full bg-black;
+  height: 4px;
+}
+
+/* Touch target mixin */
+.touch-target {
+  @apply min-h-11 min-w-11 flex items-center justify-center;
+}
+
+/* Absolute positioned texture overlay */
+.texture-overlay {
+  @apply absolute inset-0 pointer-events-none;
+}
+
+/* ==================== */
+/* RESPONSIVE HELPERS  */
+/* ==================== */
+
+@media (max-width: 768px) {
+  h1 {
+    @apply text-6xl;
+  }
+
+  h2 {
+    @apply text-5xl;
+  }
+
+  h3 {
+    @apply text-4xl;
+  }
+
+  .text-display-lg {
+    @apply text-6xl;
+  }
+
+  .text-display-xl {
+    font-size: clamp(6rem, 15vw, 8rem);
+  }
+}
+
+/* =============================== */
+/* CARD ROUTE — WARM PALETTE      */
+/* Scoped to .card-theme wrapper  */
+/* Only fires inside /card route  */
+/* =============================== */
+.card-theme {
+  --background:        #FDF6E3;
+  --foreground:        #5C3A1E;
+  --muted:             #FAF0D7;
+  --muted-foreground:  #8B6340;
+  --border:            #D4A853;
+  --border-light:      #E8D5A0;
+  --card:              #FFFDF7;
+  --card-foreground:   #5C3A1E;
+  --ring:              #D4A853;
+
+  /* Card-specific tokens */
+  --card-bg:           #FDF6E3;
+  --gold-primary:      #D4A853;
+  --gold-light:        #F5C842;
+  --cream-primary:     #FDF6E3;
+  --cream-secondary:   #FAF0D7;
+  --pink-primary:      #F0A0B0;
+  --pink-deep:         #E87090;
+  --warm-white:        #FFFDF7;
+}
